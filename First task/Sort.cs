@@ -7,59 +7,23 @@ using System.Diagnostics;
 
 namespace First_task
 {
-   public  class Sort:Program
+    public class Sort
     {
-         long QuickSortCounter = 0;
-          long BubbleSortCounter = 0;
-         long ShellSortCounter = 0;
-        public Stopwatch quickStopwatch=new Stopwatch();
-        public Stopwatch bubbleStopwatch=new Stopwatch();
-        public Stopwatch shellStopwatch=new Stopwatch();
+        long QuickSortCounter = 0;
+        long BubbleSortCounter = 0;
+        long ShellSortCounter = 0;
+        public Stopwatch quickStopwatch = new Stopwatch();
+        public Stopwatch bubbleStopwatch = new Stopwatch();
+        public Stopwatch shellStopwatch = new Stopwatch();
 
-       
-        public void CompareByGender(Human[] array)
-        {
-            long men = array.Length;
-            men--;
-            bool end = false;
-            for (long j = 1; j < array.Length && end != true; j++)
-            {
-                if (array[j]is Men)
-                {
-                    bool flag = false;
-                    for (long i = men; i > 0 && flag != true; i--)
-                    {
-                        if (array[i]is Men && j <= i)
-                        {
-                            Human temp = array[j];
-                            array[j] = array[i];
-                            array[i] = temp;
-                            men = i - 1;
-                            flag = true;
-                            if (j > men)
-                            {
-                                end = true;
-                            }
-                        }
-
-                    }
-                }
-
-            }
-            Console.WriteLine();
-            for (long i = 0; i < array.Length; i++)
-            {
-                array[i].ShowInfo();
-            }
-        }
-        public void BubbleSort(Human[] array,string property)
+        public void BubbleSort(Human[] array, string property)
         {
             Human change;
             for (long i = 0; i < array.Length - 1; i++)
             {
-                for (long j = 0; j < array.Length - i - 1; j++) 
+                for (long j = 0; j < array.Length - i - 1; j++)
                 {
-                    if (array[j].Give(property).CompareTo(array[j + 1].Give(property)) != -1)
+                    if (array[j].GiveProperty(property).CompareTo(array[j + 1].GiveProperty(property)) != -1)
                     {
                         change = array[j];
                         array[j] = array[j + 1];
@@ -69,14 +33,14 @@ namespace First_task
                 }
             }
         }
-        public void QuickSort(long first, long last, Human[] arr,string property)
+        public void QuickSort(long first, long last, Human[] arr, string property)
         {
             long pivot = (first + last) / 2, F = first, L = last;
             bool check = false;
-            dynamic middle = arr[pivot].Give(property);
-            for (long i = first; i < last-1 && check != true; i++)
+            dynamic middle = arr[pivot].GiveProperty(property);
+            for (long i = first; i < last - 1 && check != true; i++)
             {
-                if (arr[i].Give(property).CompareTo(arr[i + 1].Give(property)) != 1)
+                if (arr[i].GiveProperty(property).CompareTo(arr[i + 1].GiveProperty(property)) != 1)
                 {
                     check = false;
                 }
@@ -91,11 +55,11 @@ namespace First_task
                 do
                 {
 
-                    if (arr[first].Give(property).CompareTo(middle) != -1)
+                    if (arr[first].GiveProperty(property).CompareTo(middle) != -1)
                     {
-                        if (arr[first].Give(property).CompareTo(arr[last].Give(property)) != -1)
+                        if (arr[first].GiveProperty(property).CompareTo(arr[last].GiveProperty(property)) != -1)
                         {
-                            if (arr[last].Give(property).CompareTo(middle) != 1)
+                            if (arr[last].GiveProperty(property).CompareTo(middle) != 1)
                             {
                                 Human temp = arr[first];
                                 arr[first] = arr[last];
@@ -103,7 +67,7 @@ namespace First_task
                                 QuickSortCounter++;
                                 first++;
                                 last--;
-                               
+
                             }
                             else
                             {
@@ -123,14 +87,13 @@ namespace First_task
                 } while (first <= last);
 
                 if (first - F >= 1 || (first - F == 1 && arr[F].surname.CompareTo(arr[first].surname) != -1))
-                { QuickSort(F, first - 1, arr,property); }
+                { QuickSort(F, first - 1, arr, property); }
                 if (L - last >= 1 || (L - last == 1 && arr[last].surname.CompareTo(arr[L].surname) != -1))
-                { QuickSort(first, L, arr,property); }
+                { QuickSort(first, L, arr, property); }
             }
         }
         public void ShellSort(Human[] array, string property)
         {
-            // Index(array.Length);
             long pivot = (array.Length % 2 == 0) ? array.Length / 2 : array.Length / 2 + 1;
             long first = 0, second = 0;
             bool flag = false;
@@ -144,7 +107,7 @@ namespace First_task
                     first = i; second = i + pivot;
                     do
                     {
-                        if (array[first].Give(property).CompareTo(array[second].Give(property)) == 1)
+                        if (array[first].GiveProperty(property).CompareTo(array[second].GiveProperty(property)) == 1)
                         {
                             Human change = array[second];
                             array[second] = array[first];
@@ -162,60 +125,36 @@ namespace First_task
                             flag = true;
                     } while (flag != true);
                 }
-                //pivot=(long)(pivot/1.5);
-                pivot--;
+                pivot /=2;
             } while (pivot > 0);
-
-            
-
-
-            //for (long i = 0; i < array.Length; i++)
-            //{
-            //    array[i].ShowInfo();
-            //}
-            //bool check = false;
-            //for (long i = 0; i < array.Length - 1 && check != true; i++)
-            //{
-            //    if (array[i].surname.CompareTo(array[i + 1].surname) != 1)
-            //    {
-            //        check = false;
-            //    }
-            //    else
-            //    {
-            //        check = true;
-
-
-            //    }
-            //}
-            //if (check == false)
-            //    Console.WriteLine("Yes");
-            //Console.WriteLine("Counter = " + counter);
         }
-        public void SpeedWorkInfo(Human[] array,string property)
+        public void SpeedWorkInfo(Human[] array, string property)
         {
-            Human[] bubbleArray = new Human[FileStringsAmount() - 1];
-            WriteFromFile(bubbleArray);
+            Files file = new Files();
+            Human[] bubbleArray = new Human[array.Length];
+            Human[] shellArray = new Human[array.Length];
+            Human[] quickArray = new Human[array.Length];
+            Console.WriteLine("Filling arrays");
 
-            Human[] shellArray = new Human[FileStringsAmount() - 1];
-            WriteFromFile(shellArray);
-
-            Human[] quickArray = new Human[FileStringsAmount() - 1];
-            WriteFromFile(quickArray);
-
-            Console.WriteLine();
+            for (int i = 0; i < array.Length; i++)
+            {
+                bubbleArray[i] = array[i];
+                shellArray[i] = array[i];
+                quickArray[i] = array[i];
+            }
 
             bubbleStopwatch.Start();
-            BubbleSort(bubbleArray,property);
+            BubbleSort(bubbleArray, property);
             bubbleStopwatch.Stop();
 
             Console.WriteLine("Sort Array :");
-            for(long i = 0; i < bubbleArray.Length; i++)
+            for (long i = 0; i < bubbleArray.Length; i++)
             {
                 bubbleArray[i].ShowInfo();
                 array[i] = bubbleArray[i];
             }
             Console.WriteLine();
-            Console.WriteLine("BubbleSortCounter = "+BubbleSortCounter);
+            Console.WriteLine("BubbleSortCounter = " + BubbleSortCounter);
             Console.WriteLine("BubbleSortTime = " + bubbleStopwatch.Elapsed);
             Console.WriteLine();
 
@@ -226,11 +165,11 @@ namespace First_task
             Console.WriteLine("ShellSortCounter = " + ShellSortCounter);
             Console.WriteLine("ShellSortTime = " + shellStopwatch.Elapsed);
             Console.WriteLine();
-            
+
             quickStopwatch.Start();
-            QuickSort(0,quickArray.Length-1,quickArray, property);
+            QuickSort(0, quickArray.Length - 1, quickArray, property);
             quickStopwatch.Stop();
-            
+
             Console.WriteLine("QuickSortCounter = " + QuickSortCounter);
             Console.WriteLine("QuickSortTime = " + quickStopwatch.Elapsed);
             Console.WriteLine();

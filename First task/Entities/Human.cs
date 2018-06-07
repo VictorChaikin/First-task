@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace First_task
 {
-    public class Human : Sort
+    public abstract class Human
     {
         
         public string surname;
         public string name;
-        public string patronomic;
         public string gender;
+        public string patronomic;
         public DateTime birthDate;
         public Human() { }
         public  Human(string surname, string name, string patronomic, int year,int month,int day)
@@ -23,7 +23,7 @@ namespace First_task
             this.patronomic = patronomic;
             this.birthDate = new DateTime(year,month,day);
         }
-        public dynamic Give( string property)
+        public dynamic GiveProperty( string property)
         {
             if (property == "surname")
                 return this.surname;
@@ -33,12 +33,12 @@ namespace First_task
                 return this.patronomic;
             if (property == "date")
                 return this.birthDate;
-            return this.gender;
+           return this.gender;
         }
 
         public void ShowInfo()
         {
-            Console.Write("{0,11}",surname);
+            Console.Write("{0,15}",surname);
             Console.Write("{0,13}", name);
             Console.Write("{0,15}", patronomic);
             Console.Write("{0,7}", gender);

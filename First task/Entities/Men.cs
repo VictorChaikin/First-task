@@ -9,58 +9,37 @@ namespace First_task
     class Men : Human
     {
         public Men() { }
-        public Men(string surname, string name, string patronomic,string gender, int year, int month, int day) : base(surname, name, patronomic, year, month, day)
+        public Men(string surname, string name, string patronomic, string gender, int year, int month, int day) : base(surname, name, patronomic, year, month, day)
         {
             this.gender = gender;
         }
-        public void CompareByGender(Human[] array)
+        public override void HumanCompare(Human human)
         {
-            long men = array.Length;
-            men--;
-            bool end = false;
-            for (long j = 1; j < array.Length && end != true; j++)
+            if (this.surname.CompareTo(human.surname) == 0)
             {
-                if (array[j] is Women)
+                if (this.name.CompareTo(human.name) == 0)
                 {
-                    bool flag = false;
-                    for (long i = men; i > 0 && flag != true; i--)
+                    if (this.patronomic.CompareTo(human.patronomic) == 0)
                     {
-                        if (array[i] is Men && j <= i)
+                        if(this.gender==human.gender && human.gender == "men")
                         {
-                            Human temp = array[j];
-                            array[j] = array[i];
-                            array[i] = temp;
-                            men = i - 1;
-                            flag = true;
-                            if (j > men)
-                            {
-                                end = true;
-                            }
+                            Console.WriteLine(this.birthDate.CompareTo(human.birthDate));
                         }
-
                     }
-                }
-
-            }
-           
-            Human change;
-            for (long i = 0; i < men+1; i++)
-            {
-                for (long j = 0; j < men - i ; j++)
-                {
-                    if (array[j].birthDate.CompareTo(array[j + 1].birthDate) != -1)
+                    else
                     {
-                        change = array[j];
-                        array[j] = array[j + 1];
-                        array[j + 1] = change;
+                        Console.WriteLine(this.patronomic.CompareTo(human.patronomic));
                     }
                 }
-            }
-            for (long i = 0; i < array.Length; i++)
-            {
-                Console.Write("i = " + i);
+                else
+                {
+                    Console.WriteLine(this.name.CompareTo(human.name));
+                }
 
-                array[i].ShowInfo();
+            }
+            else
+            {
+                Console.WriteLine(this.surname.CompareTo(human.surname));
             }
         }
     }

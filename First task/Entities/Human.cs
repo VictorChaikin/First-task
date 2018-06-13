@@ -7,23 +7,23 @@ using System.Threading.Tasks;
 
 namespace First_task
 {
-    public abstract class Human
+    public abstract class Human : IPeopleCompare
     {
-        
+
         public string surname;
         public string name;
         public string gender;
         public string patronomic;
         public DateTime birthDate;
         public Human() { }
-        public  Human(string surname, string name, string patronomic, int year,int month,int day)
+        public Human(string surname, string name, string patronomic, int year, int month, int day)
         {
             this.surname = surname;
             this.name = name;
             this.patronomic = patronomic;
-            this.birthDate = new DateTime(year,month,day);
+            this.birthDate = new DateTime(year, month, day);
         }
-        public dynamic GiveProperty( string property)
+        public dynamic GiveProperty(string property)
         {
             if (property == "surname")
                 return this.surname;
@@ -33,12 +33,12 @@ namespace First_task
                 return this.patronomic;
             if (property == "date")
                 return this.birthDate;
-           return this.gender;
+            return this.gender;
         }
 
         public void ShowInfo()
         {
-            Console.Write("{0,15}",surname);
+            Console.Write("{0,15}", surname);
             Console.Write("{0,13}", name);
             Console.Write("{0,15}", patronomic);
             Console.Write("{0,7}", gender);
@@ -47,6 +47,33 @@ namespace First_task
             Console.Write("{0,4}", birthDate.Year);
             Console.WriteLine();
         }
-        
+       
+        public virtual void HumanCompare(Human human)
+        {
+            if (this.surname.CompareTo(human.surname)==0)
+            {
+                if (this.name.CompareTo(human.name) == 0)
+                {
+                    if (this.patronomic.CompareTo(human.patronomic) == 0)
+                    {
+                        Console.WriteLine("They are equal");
+                    }
+                    else
+                    {
+                        Console.WriteLine(this.patronomic.CompareTo(human.patronomic));
+                    }
+                }
+                else
+                {
+                    Console.WriteLine(this.name.CompareTo(human.name));
+                }
+
+            }
+            else
+            {
+                Console.WriteLine(this.surname.CompareTo(human.surname));
+            }
+
+        }
     }
 }

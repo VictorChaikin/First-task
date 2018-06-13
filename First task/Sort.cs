@@ -98,8 +98,6 @@ namespace First_task
             long first = 0, second = 0;
             bool flag = false;
             long counter = 0;
-            Stopwatch sw = new Stopwatch();
-            sw.Start();
             do
             {
                 for (long i = 0; i + pivot < array.Length; i++)
@@ -125,7 +123,7 @@ namespace First_task
                             flag = true;
                     } while (flag != true);
                 }
-                pivot /=2;
+                pivot /= 2;
             } while (pivot > 0);
         }
         public void SpeedWorkInfo(Human[] array, string property)

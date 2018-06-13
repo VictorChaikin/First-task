@@ -12,18 +12,23 @@ namespace First_task
         {
 
             string sortProperty = "name";
-            Human []array = new Human[1000];
+            Human[] humanArray = new Human[10000];
 
             Files f = new Files();
-            f.FillArrays(array);
+            f.FillArrays(humanArray);
 
-            Men men = new Men();
-            men.CompareByGender(array);
 
             Sort sort = new Sort();
-            sort.SpeedWorkInfo(array, sortProperty);
+            sort.SpeedWorkInfo(humanArray, sortProperty);
 
-            f.WriteIntoFile(array, sortProperty);
+            f.WriteIntoFile(humanArray, sortProperty);
+
+            Men John = new Men("Петров", "Иван", "Иванов","men", 1999, 12, 12);
+            Men Tom = new Men("Петров", "Иван", "Иванов", "men", 2000, 12, 12);
+            John.HumanCompare(Tom);
+
+            Women Masha = new Women("Петров", "Иван", "Иванов", "women", 1999, 12, 12);
+            Masha.HumanCompare(John);
         }
     }
 }

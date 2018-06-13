@@ -8,6 +8,6 @@ namespace First_task
 {
     interface IPeopleCompare
     {
-        void ShowInfo();
+        void HumanCompare(Human human);
     }
 }

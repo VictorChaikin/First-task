@@ -38,13 +38,13 @@ namespace First_task
 
         public void ShowInfo()
         {
-            Console.Write("{0,15}", surname);
-            Console.Write("{0,13}", name);
-            Console.Write("{0,15}", patronomic);
-            Console.Write("{0,7}", gender);
-            Console.Write("{0,5}", birthDate.Day + "/");
-            Console.Write("{0,3}", birthDate.Month + "/");
-            Console.Write("{0,4}", birthDate.Year);
+            Console.Write("{0,13}", this.surname);
+            Console.Write("{0,13}", this.name);
+            Console.Write("{0,17}", this.patronomic);
+            Console.Write("{0,7}", this.gender);
+            Console.Write("{0,5}", this.birthDate.Day + "/");
+            Console.Write("{0,3}", this.birthDate.Month + "/");
+            Console.Write("{0,4}", this.birthDate.Year);
             Console.WriteLine();
         }
        

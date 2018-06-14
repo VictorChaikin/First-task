@@ -11,8 +11,10 @@ namespace First_task
         static void Main(string[] args)
         {
 
-            string sortProperty = "name";
-            Human[] humanArray = new Human[10000];
+
+            Console.OutputEncoding = Encoding.UTF8;
+            string sortProperty = "patronomic";
+            Human[] humanArray = new Human[1000];
 
             Files f = new Files();
             f.FillArrays(humanArray);
@@ -23,12 +25,15 @@ namespace First_task
 
             f.WriteIntoFile(humanArray, sortProperty);
 
-            Men John = new Men("Петров", "Иван", "Иванов","men", 1999, 12, 12);
-            Men Tom = new Men("Петров", "Иван", "Иванов", "men", 2000, 12, 12);
-            John.HumanCompare(Tom);
+            //Men John = new Men("Петров", "Иван", "Иванов", "men", 1999, 12, 12);
+            //Men Tom = new Men("Петров", "Иван", "Иванов", "men", 2000, 12, 12);
+            //John.HumanCompare(Tom);
 
-            Women Masha = new Women("Петров", "Иван", "Иванов", "women", 1999, 12, 12);
-            Masha.HumanCompare(John);
+            //Women Masha = new Women("Петров", "Иван", "Иванов", "women", 1999, 12, 12);
+            //Masha.HumanCompare(John);
+            //string name = "Бобров";
+            //name += 'а';
+            //Console.WriteLine(name);
         }
     }
 }

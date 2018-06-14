@@ -40,9 +40,52 @@ namespace First_task
                 for (int i = 0; i < array.Length; i++)
                 {
                     array[i] = file.ReadLine();
-                    Console.WriteLine(array[i] + "  " + i);
                 }
             }
+        }
+        public string SurnameCreation(string surname,int gender)
+        {
+            string finalSurname="";
+            string[] split = surname.Split(' ');
+            if(gender==0)
+            finalSurname = split[0] + "а";
+            else
+                finalSurname = split[0];
+            return finalSurname;
+        }
+
+        public string PatronomicCreation(string patronomic,int gender)
+        {
+            string finalPatronomic = "";
+            string[] middleInitial = patronomic.Split(' ');
+            char lastSymbol = middleInitial[0][middleInitial[0].Length-1];
+            finalPatronomic += middleInitial[0].Substring(0, middleInitial[0].Length - 1);
+            if (lastSymbol == 'й')
+            {
+                if (gender == 0)
+                    finalPatronomic += "евна";
+                else
+                    finalPatronomic += "евич";
+            }
+            else
+            {
+
+                if (middleInitial[0] != "Аникита" || middleInitial[0] != "Никита" ||middleInitial[0] != "Фока" || middleInitial[0] != "Мина" || middleInitial[0] != "Савва" || middleInitial[0] != "Сила" || middleInitial[0] != "Фома")
+                {
+                    if (gender == 0)
+                        finalPatronomic += lastSymbol + "овна";
+                    else
+                        finalPatronomic += lastSymbol + "овна";
+                }
+                else
+                {
+                    if (gender == 0)
+                        finalPatronomic += "ична";
+                    else
+                        finalPatronomic += "ич";
+                }
+            }
+            return finalPatronomic;
         }
 
         public void FillArrays(Human[] array)
@@ -55,9 +98,7 @@ namespace First_task
             ReadFromFile(ManNames, ManNamesArray);
             Random random = new Random();
             long surname, patronomic;
-            string genderValue;
             int gender, day, month = 12, name, year;
-
             for (long i = 0; i < array.Length; i++)
             {
 
@@ -72,8 +113,7 @@ namespace First_task
                     day = random.Next(1, 29);
                     year = random.Next(1900, 2019);
                     month = random.Next(1, 13);
-                    genderValue = "women";
-                    array[i] = new Women(SurnamesArray[surname], WomanNamesArray[name], ManNamesArray[patronomic], genderValue, year, month, day);
+                    array[i] = new Women(SurnameCreation(SurnamesArray[surname],gender), WomanNamesArray[name], PatronomicCreation(ManNamesArray[patronomic],gender), year, month, day);
                 }
                 else
                 {
@@ -83,8 +123,7 @@ namespace First_task
                     year = random.Next(1900, 2019);
                     month = random.Next(1, 13);
                     day = random.Next(1, 29);
-                    genderValue = "men";
-                    array[i] = new Men(SurnamesArray[surname], ManNamesArray[name], ManNamesArray[patronomic], genderValue, year, month, day);
+                    array[i] = new Men(SurnameCreation(SurnamesArray[surname],gender), WomanNamesArray[name], PatronomicCreation(ManNamesArray[patronomic],gender), year, month, day);
                 }
             }
 

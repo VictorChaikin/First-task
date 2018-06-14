@@ -9,9 +9,9 @@ namespace First_task
     class Men : Human
     {
         public Men() { }
-        public Men(string surname, string name, string patronomic, string gender, int year, int month, int day) : base(surname, name, patronomic, year, month, day)
+        public Men(string surname, string name, string patronomic,  int year, int month, int day) : base(surname, name, patronomic, year, month, day)
         {
-            this.gender = gender;
+            this.gender = "man";
         }
         public override void HumanCompare(Human human)
         {
